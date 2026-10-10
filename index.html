@@ -1,20 +1,32 @@
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <meta name="description"
-        content="Portfolio of Nagubilli Siva Rama Krishna - Mechanical Engineering student, CAD designer and engineering enthusiast.">
+    <meta name="theme-color" content="#101614">
+    <meta name="description" content="Portfolio of Nagubilli Siva Rama Krishna, Mechanical Engineering student interested in CAD, engineering design, manufacturing and practical engineering solutions.">
 
     <title>Siva Rama Krishna | Mechanical Engineering Portfolio</title>
 
     <style>
+        /* ===== DESIGN SYSTEM ===== */
 
-        /* =====================================================
-           GLOBAL
-        ====================================================== */
+        :root {
+            --background: #101614;
+            --background-light: #151e1a;
+            --card: #1b2521;
+            --card-hover: #24332c;
+            --primary: #70c1a0;
+            --primary-dark: #438f70;
+            --accent: #d6a16d;
+            --text: #f3f5f1;
+            --text-light: #c8d2cc;
+            --muted: #96a69c;
+            --border: rgba(174, 199, 184, 0.16);
+            --radius: 15px;
+            --transition: 0.3s ease;
+        }
 
         * {
             margin: 0;
@@ -23,24 +35,20 @@
             scroll-behavior: smooth;
         }
 
-        :root {
-            --background: #0b1120;
-            --background-light: #111827;
-            --card: #151e2f;
-            --card-hover: #1b273b;
-            --primary: #38bdf8;
-            --primary-dark: #0284c7;
-            --text: #f8fafc;
-            --text-light: #cbd5e1;
-            --muted: #94a3b8;
-            --border: rgba(148, 163, 184, 0.18);
+        html {
+            scroll-padding-top: 85px;
         }
 
         body {
             font-family: Arial, Helvetica, sans-serif;
             background: var(--background);
             color: var(--text);
-            line-height: 1.6;
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        body.menu-open {
+            overflow: hidden;
         }
 
         a {
@@ -50,6 +58,11 @@
 
         img {
             max-width: 100%;
+            display: block;
+        }
+
+        button {
+            font: inherit;
         }
 
         .container {
@@ -58,74 +71,118 @@
             margin: auto;
         }
 
-
-        /* =====================================================
-           NAVIGATION
-        ====================================================== */
+        /* ===== NAVIGATION ===== */
 
         nav {
             position: fixed;
             top: 0;
             left: 0;
-
             width: 100%;
-
-            background: rgba(11, 17, 32, 0.88);
-            backdrop-filter: blur(12px);
-
-            border-bottom: 1px solid var(--border);
-
             z-index: 1000;
+            background: rgba(16, 22, 20, 0.93);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--border);
         }
 
         .nav-container {
-            height: 70px;
-
+            min-height: 76px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 20px;
         }
 
         .logo {
-            font-size: 22px;
-            font-weight: bold;
             color: var(--primary);
+            font-size: 26px;
+            font-weight: 800;
+            letter-spacing: -1px;
         }
 
         .nav-links {
             display: flex;
-            gap: 28px;
+            align-items: center;
+            gap: 23px;
             list-style: none;
         }
 
         .nav-links a {
-            font-size: 14px;
             color: var(--text-light);
-
-            transition: 0.3s;
+            font-size: 13px;
+            font-weight: 600;
+            transition: color var(--transition);
         }
 
         .nav-links a:hover {
             color: var(--primary);
         }
 
+        .menu-toggle {
+            display: none;
+            width: 42px;
+            height: 42px;
+            border: 1px solid var(--border);
+            border-radius: 9px;
+            background: var(--card);
+            color: var(--text);
+            font-size: 23px;
+            cursor: pointer;
+        }
 
-        /* =====================================================
-           HERO
-        ====================================================== */
+        /* ===== BUTTONS ===== */
+
+        .btn {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            padding: 12px 22px;
+            min-height: 46px;
+            border: 1px solid transparent;
+            border-radius: 9px;
+            font-size: 14px;
+            font-weight: 700;
+            transition: all var(--transition);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: #101614;
+        }
+
+        .btn-primary:hover {
+            background: #91d5b7;
+            transform: translateY(-3px);
+        }
+
+        .btn-outline {
+            border-color: var(--border);
+            color: var(--text);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        /* ===== HERO ===== */
 
         .hero {
             min-height: 100vh;
-
+            min-height: 100svh;
             display: flex;
             align-items: center;
-
-            padding-top: 70px;
-
+            padding: 115px 0 65px;
             background:
                 radial-gradient(
-                    circle at 80% 30%,
-                    rgba(56, 189, 248, 0.12),
+                    ellipse at 82% 30%,
+                    rgba(112, 193, 160, 0.12),
+                    transparent 35%
+                ),
+                radial-gradient(
+                    ellipse at 10% 85%,
+                    rgba(214, 161, 109, 0.06),
                     transparent 30%
                 ),
                 var(--background);
@@ -133,256 +190,210 @@
 
         .hero-container {
             display: grid;
-
-            grid-template-columns: 1.4fr 0.6fr;
-
-            gap: 60px;
-
+            grid-template-columns: minmax(0, 1.5fr) minmax(250px, 0.7fr);
+            gap: 55px;
             align-items: center;
         }
 
         .hero-small {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
             color: var(--primary);
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            margin-bottom: 16px;
+        }
 
-            font-size: 15px;
-            font-weight: bold;
-
-            letter-spacing: 1px;
-
-            margin-bottom: 15px;
+        .hero-small::before {
+            content: "";
+            width: 24px;
+            height: 2px;
+            background: var(--accent);
         }
 
         .hero h1 {
-            font-size: clamp(42px, 6vw, 72px);
-
-            line-height: 1.05;
-
-            margin-bottom: 20px;
+            font-size: clamp(40px, 5.5vw, 70px);
+            line-height: 1.04;
+            letter-spacing: -2px;
+            margin-bottom: 8px;
         }
 
         .hero h1 span {
+            display: block;
             color: var(--primary);
         }
 
+        /* Reduced gap between name and objective */
+
         .hero-description {
-            max-width: 650px;
-
+            max-width: 620px;
             color: var(--text-light);
-
-            font-size: 17px;
-
-            margin-bottom: 30px;
+            font-size: 16px;
+            line-height: 1.8;
+            margin: 0 0 27px;
         }
 
         .hero-buttons {
             display: flex;
-            gap: 15px;
-
             flex-wrap: wrap;
+            gap: 13px;
         }
-
-        .btn {
-            display: inline-block;
-
-            padding: 12px 22px;
-
-            border-radius: 8px;
-
-            font-size: 14px;
-            font-weight: bold;
-
-            transition: 0.3s;
-        }
-
-        .btn-primary {
-            background: var(--primary);
-            color: #06111c;
-        }
-
-        .btn-primary:hover {
-            background: #7dd3fc;
-
-            transform: translateY(-2px);
-        }
-
-        .btn-outline {
-            border: 1px solid var(--border);
-
-            color: var(--text-light);
-        }
-
-        .btn-outline:hover {
-            border-color: var(--primary);
-
-            color: var(--primary);
-        }
-
-
-        /* =====================================================
-           PROFILE PHOTO
-        ====================================================== */
 
         .hero-photo {
             display: flex;
             justify-content: center;
+            align-items: center;
         }
 
         .photo-wrapper {
-            width: 280px;
-            height: 280px;
-
-            border-radius: 50%;
-
+            width: 285px;
+            height: 285px;
             padding: 7px;
-
+            border-radius: 50%;
             background: linear-gradient(
-                135deg,
+                145deg,
                 var(--primary),
-                transparent 70%
+                var(--accent) 55%,
+                transparent 85%
             );
+            box-shadow: 0 0 65px rgba(112, 193, 160, 0.12);
+            transition: transform 0.4s ease;
+        }
 
-            box-shadow:
-                0 0 60px rgba(56, 189, 248, 0.15);
+        .photo-wrapper:hover {
+            transform: translateY(-5px) rotate(2deg);
         }
 
         .photo-wrapper img {
             width: 100%;
             height: 100%;
-
             object-fit: cover;
-
+            object-position: center;
             border-radius: 50%;
-
             border: 5px solid var(--background);
         }
 
+        /* ===== COMMON SECTIONS ===== */
 
-        /* =====================================================
-           SECTION
-        ====================================================== */
+        section:not(.hero) {
+            padding: 95px 0;
+            scroll-margin-top: 65px;
+        }
 
-        section {
-            padding: 100px 0;
+        .section-alt {
+            background: var(--background-light);
         }
 
         .section-heading {
-            margin-bottom: 45px;
+            margin-bottom: 40px;
         }
 
         .section-label {
-            color: var(--primary);
-
-            font-size: 13px;
-
-            font-weight: bold;
-
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--accent);
+            font-size: 12px;
+            font-weight: 800;
             letter-spacing: 2px;
-
             text-transform: uppercase;
-
             margin-bottom: 8px;
         }
 
+        .section-label::before {
+            content: "";
+            width: 22px;
+            height: 2px;
+            background: var(--primary);
+        }
+
         .section-heading h2 {
-            font-size: 36px;
+            font-size: clamp(28px, 4vw, 38px);
+            line-height: 1.25;
+            letter-spacing: -0.7px;
         }
 
-        .section-heading p {
-            color: var(--muted);
-
+        .section-heading > p {
             max-width: 650px;
-
+            color: var(--muted);
             margin-top: 10px;
+            font-size: 15px;
         }
 
-
-        /* =====================================================
-           ABOUT
-        ====================================================== */
+        /* ===== ABOUT ===== */
 
         .about-grid {
             display: grid;
-
-            grid-template-columns: 1fr 1fr;
-
-            gap: 50px;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 45px;
+            align-items: start;
         }
 
         .about-text p {
             color: var(--text-light);
-
-            margin-bottom: 15px;
+            font-size: 15px;
+            margin-bottom: 16px;
         }
 
         .about-info {
             display: grid;
-
-            grid-template-columns: 1fr 1fr;
-
-            gap: 15px;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
         }
 
         .info-card {
             background: var(--card);
-
             border: 1px solid var(--border);
-
             padding: 20px;
-
             border-radius: 12px;
+            transition: all var(--transition);
+        }
+
+        .info-card:hover {
+            border-color: rgba(112, 193, 160, 0.5);
+            transform: translateY(-3px);
         }
 
         .info-card h3 {
-            font-size: 13px;
-
             color: var(--muted);
-
-            margin-bottom: 5px;
+            font-size: 12px;
+            margin-bottom: 6px;
         }
 
         .info-card p {
-            font-weight: bold;
+            color: var(--text);
+            font-size: 14px;
+            font-weight: 700;
+            overflow-wrap: anywhere;
         }
 
-
-        /* =====================================================
-           SKILLS
-        ====================================================== */
+        /* ===== SKILLS ===== */
 
         .skills-grid {
             display: grid;
-
-            grid-template-columns:
-                repeat(4, 1fr);
-
+            grid-template-columns: repeat(4, minmax(0, 1fr));
             gap: 18px;
         }
 
         .skill-card {
             background: var(--card);
-
             border: 1px solid var(--border);
-
-            padding: 25px;
-
-            border-radius: 12px;
-
+            padding: 26px 16px;
+            border-radius: var(--radius);
             text-align: center;
-
-            transition: 0.3s;
+            transition: all var(--transition);
         }
 
         .skill-card:hover {
-            transform: translateY(-5px);
-
+            transform: translateY(-6px);
             background: var(--card-hover);
-
-            border-color: rgba(56, 189, 248, 0.5);
+            border-color: rgba(112, 193, 160, 0.5);
         }
 
         .skill-icon {
             font-size: 30px;
-
             margin-bottom: 10px;
         }
 
@@ -392,319 +403,390 @@
 
         .skill-card p {
             color: var(--muted);
-
             font-size: 13px;
-
             margin-top: 5px;
         }
 
-
-        /* =====================================================
-           PROJECTS
-        ====================================================== */
+        /* ===== PROJECTS ===== */
 
         .projects-grid {
             display: grid;
-
-            grid-template-columns:
-                repeat(3, 1fr);
-
-            gap: 22px;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 20px;
         }
 
         .project-card {
+            position: relative;
+            overflow: hidden;
             background: var(--card);
-
             border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 27px;
+            transition: all var(--transition);
+        }
 
-            border-radius: 14px;
-
-            padding: 28px;
-
-            transition: 0.3s;
+        .project-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 45px;
+            height: 3px;
+            background: var(--primary);
+            transition: width var(--transition);
         }
 
         .project-card:hover {
             transform: translateY(-6px);
+            border-color: rgba(112, 193, 160, 0.45);
+            background: var(--card-hover);
+        }
 
-            border-color: rgba(56, 189, 248, 0.45);
+        .project-card:hover::before {
+            width: 100%;
         }
 
         .project-number {
-            color: var(--primary);
-
-            font-size: 13px;
-
-            font-weight: bold;
-
-            margin-bottom: 15px;
+            color: var(--accent);
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
         }
 
         .project-card h3 {
-            font-size: 19px;
-
+            font-size: 18px;
+            line-height: 1.4;
             margin-bottom: 10px;
         }
 
         .project-card .role {
             color: var(--primary);
-
             font-size: 12px;
-
-            margin-bottom: 12px;
+            font-weight: 700;
+            margin-bottom: 13px;
         }
 
         .project-card p {
             color: var(--text-light);
-
             font-size: 14px;
         }
 
-
-        /* =====================================================
-           EXPERIENCE
-        ====================================================== */
+        /* ===== EXPERIENCE ===== */
 
         .timeline {
             position: relative;
-
             max-width: 850px;
         }
 
         .timeline::before {
             content: "";
-
             position: absolute;
-
-            left: 8px;
-            top: 0;
-            bottom: 0;
-
+            left: 7px;
+            top: 7px;
+            bottom: 8px;
             width: 2px;
-
             background: var(--border);
         }
 
         .timeline-item {
             position: relative;
-
             padding-left: 35px;
+            margin-bottom: 38px;
+        }
 
-            margin-bottom: 40px;
+        .timeline-item:last-child {
+            margin-bottom: 0;
         }
 
         .timeline-dot {
             position: absolute;
-
-            left: 2px;
             top: 6px;
-
+            left: 1px;
             width: 14px;
             height: 14px;
-
             background: var(--primary);
-
+            border: 3px solid var(--background);
             border-radius: 50%;
-
-            box-shadow:
-                0 0 0 5px var(--background);
+            box-shadow: 0 0 0 2px var(--primary);
         }
 
         .timeline-item h3 {
             font-size: 19px;
+            line-height: 1.4;
         }
 
         .timeline-item .date {
-            color: var(--primary);
-
+            color: var(--accent);
             font-size: 13px;
-
-            margin: 4px 0 10px;
+            font-weight: 700;
+            margin: 5px 0 10px;
         }
 
         .timeline-item p {
             color: var(--text-light);
-
             font-size: 14px;
         }
 
-
-        /* =====================================================
-           EDUCATION
-        ====================================================== */
+        /* ===== EDUCATION ===== */
 
         .education-grid {
             display: grid;
-
-            grid-template-columns:
-                repeat(3, 1fr);
-
+            grid-template-columns: repeat(3, minmax(0, 1fr));
             gap: 20px;
         }
 
         .education-card {
             background: var(--card);
-
             border: 1px solid var(--border);
-
             padding: 25px;
-
             border-radius: 12px;
+            transition: all var(--transition);
+        }
+
+        .education-card:hover {
+            border-color: rgba(112, 193, 160, 0.45);
+            transform: translateY(-4px);
         }
 
         .education-card h3 {
-            color: var(--primary);
-
-            font-size: 14px;
-
+            color: var(--accent);
+            font-size: 13px;
             margin-bottom: 10px;
         }
 
         .education-card h4 {
             font-size: 17px;
-
-            margin-bottom: 5px;
+            line-height: 1.5;
+            margin-bottom: 7px;
         }
 
         .education-card p {
             color: var(--muted);
-
             font-size: 13px;
+            margin-top: 4px;
         }
 
-
-        /* =====================================================
-           ACHIEVEMENTS
-        ====================================================== */
-
-        .achievement-card {
-            background: var(--card);
-
-            border: 1px solid var(--border);
-
-            padding: 30px;
-
-            border-radius: 14px;
-
-            margin-bottom: 18px;
-        }
-
-        .achievement-card h3 {
-            color: var(--primary);
-
-            margin-bottom: 8px;
-        }
-
-        .achievement-card p {
-            color: var(--text-light);
-
-            font-size: 14px;
-        }
-
-
-        /* =====================================================
-           CERTIFICATIONS
-        ====================================================== */
+        /* ===== CERTIFICATIONS ===== */
 
         .certifications {
             display: grid;
-
-            grid-template-columns:
-                repeat(2, 1fr);
-
-            gap: 18px;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 17px;
         }
 
         .certificate {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
             background: var(--card);
-
             border: 1px solid var(--border);
+            padding: 21px;
+            border-radius: 12px;
+            transition: border-color var(--transition);
+        }
 
-            padding: 20px;
+        .certificate:hover {
+            border-color: rgba(112, 193, 160, 0.45);
+        }
 
+        .certificate-icon {
+            display: grid;
+            place-items: center;
+            flex-shrink: 0;
+            width: 40px;
+            height: 40px;
             border-radius: 10px;
+            background: rgba(112, 193, 160, 0.1);
+            color: var(--primary);
+            font-size: 19px;
         }
 
         .certificate h3 {
             font-size: 15px;
+            line-height: 1.5;
         }
 
         .certificate p {
             color: var(--muted);
-
             font-size: 13px;
-
-            margin-top: 4px;
+            margin-top: 5px;
         }
 
+        /* ===== ACHIEVEMENTS ===== */
 
-        /* =====================================================
-           CONTACT
-        ====================================================== */
+        .achievements-list {
+            display: grid;
+            gap: 16px;
+        }
+
+        .achievement-card {
+            display: grid;
+            grid-template-columns: 43px minmax(0, 1fr);
+            gap: 16px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            padding: 25px;
+            border-radius: 13px;
+            transition: border-color var(--transition);
+        }
+
+        .achievement-card:hover {
+            border-color: rgba(214, 161, 109, 0.5);
+        }
+
+        .achievement-icon {
+            display: grid;
+            place-items: center;
+            width: 42px;
+            height: 42px;
+            border-radius: 11px;
+            background: rgba(214, 161, 109, 0.1);
+            font-size: 20px;
+        }
+
+        .achievement-card h3 {
+            color: var(--accent);
+            font-size: 17px;
+            margin-bottom: 7px;
+        }
+
+        .achievement-card p {
+            color: var(--text-light);
+            font-size: 14px;
+        }
+
+        /* ===== CONTACT ===== */
 
         .contact-section {
             text-align: center;
+            background:
+                radial-gradient(
+                    ellipse at center,
+                    rgba(112, 193, 160, 0.08),
+                    transparent 65%
+                ),
+                var(--background);
+        }
+
+        .contact-section .section-heading {
+            margin-bottom: 20px;
+        }
+
+        .contact-section .section-label {
+            justify-content: center;
         }
 
         .contact-section p {
             max-width: 600px;
-
-            margin: 15px auto 30px;
-
+            margin: 0 auto 28px;
             color: var(--text-light);
+            font-size: 15px;
         }
 
         .contact-links {
             display: flex;
-
             justify-content: center;
-
-            gap: 15px;
-
             flex-wrap: wrap;
+            gap: 14px;
         }
 
-
-        /* =====================================================
-           FOOTER
-        ====================================================== */
+        /* ===== FOOTER ===== */
 
         footer {
             border-top: 1px solid var(--border);
-
-            padding: 25px 0;
-
-            text-align: center;
-
-            color: var(--muted);
-
-            font-size: 13px;
+            padding: 24px 0;
+            background: var(--background-light);
         }
 
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
 
-        /* =====================================================
-           MOBILE
-        ====================================================== */
+        footer p {
+            color: var(--muted);
+            font-size: 12px;
+        }
 
-        @media (max-width: 900px) {
+        .footer-logo {
+            color: var(--primary);
+            font-size: 17px;
+            font-weight: 800;
+        }
+
+        /* ===== TABLET ===== */
+
+        @media (max-width: 950px) {
+            .menu-toggle {
+                display: grid;
+                place-items: center;
+            }
 
             .nav-links {
+                position: fixed;
+                top: 76px;
+                left: 0;
+                right: 0;
                 display: none;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0;
+                padding: 12px 5% 22px;
+                background: var(--background-light);
+                border-bottom: 1px solid var(--border);
+                max-height: calc(100vh - 76px);
+                overflow-y: auto;
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 11px 8px;
+                font-size: 15px;
+            }
+
+            .hero-container {
+                grid-template-columns: minmax(0, 1fr) 235px;
+                gap: 30px;
+            }
+
+            .photo-wrapper {
+                width: 225px;
+                height: 225px;
+            }
+
+            .projects-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .education-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ===== MOBILE ===== */
+
+        @media (max-width: 650px) {
+            .container {
+                width: 89%;
+            }
+
+            .hero {
+                min-height: auto;
+                padding: 115px 0 70px;
             }
 
             .hero-container {
                 grid-template-columns: 1fr;
-
+                gap: 28px;
                 text-align: center;
-            }
-
-            .hero-description {
-                margin-left: auto;
-                margin-right: auto;
-            }
-
-            .hero-buttons {
-                justify-content: center;
             }
 
             .hero-photo {
@@ -712,925 +794,651 @@
             }
 
             .photo-wrapper {
-                width: 220px;
-                height: 220px;
+                width: 185px;
+                height: 185px;
+            }
+
+            .hero-small {
+                justify-content: center;
+                font-size: 10px;
+                letter-spacing: 1.5px;
+            }
+
+            .hero h1 {
+                font-size: clamp(35px, 9vw, 47px);
+                line-height: 1.08;
+                letter-spacing: -1.5px;
+                margin-bottom: 10px;
+            }
+
+            .hero-description {
+                font-size: 14px;
+                line-height: 1.8;
+                margin: 0 auto 23px;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .btn {
+                padding: 11px 16px;
+                font-size: 13px;
+            }
+
+            section:not(.hero) {
+                padding: 70px 0;
+            }
+
+            .section-heading {
+                margin-bottom: 30px;
+            }
+
+            .section-heading h2 {
+                font-size: 29px;
             }
 
             .about-grid {
                 grid-template-columns: 1fr;
-            }
-
-            .skills-grid {
-                grid-template-columns:
-                    repeat(2, 1fr);
-            }
-
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .education-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .certifications {
-                grid-template-columns: 1fr;
-            }
-        }
-
-
-        @media (max-width: 500px) {
-
-            .container {
-                width: 88%;
-            }
-
-            section {
-                padding: 75px 0;
-            }
-
-            .hero h1 {
-                font-size: 42px;
+                gap: 24px;
             }
 
             .about-info {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 10px;
+            }
+
+            .info-card {
+                padding: 15px;
+            }
+
+            .info-card p {
+                font-size: 13px;
+            }
+
+            .skills-grid,
+            .projects-grid,
+            .certifications {
                 grid-template-columns: 1fr;
             }
 
-            .skills-grid {
-                grid-template-columns: 1fr;
+            .skill-card {
+                padding: 22px 15px;
             }
 
+            .project-card {
+                padding: 23px;
+            }
+
+            .achievement-card {
+                grid-template-columns: 35px minmax(0, 1fr);
+                gap: 12px;
+                padding: 18px;
+            }
+
+            .achievement-icon {
+                width: 35px;
+                height: 35px;
+                font-size: 17px;
+            }
+
+            .achievement-card h3 {
+                font-size: 15px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                justify-content: center;
+                text-align: center;
+            }
         }
 
+        /* ===== ACCESSIBILITY ===== */
+
+        a:focus-visible,
+        button:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 4px;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+                animation-duration: 0.01ms !important;
+            }
+        }
     </style>
-
 </head>
-
 
 <body>
 
+    <!-- NAVIGATION -->
 
-<!-- =====================================================
-     NAVIGATION
-====================================================== -->
+    <nav aria-label="Main navigation">
+        <div class="container nav-container">
 
-<nav>
+            <a href="#home" class="logo">SRK.</a>
 
-    <div class="container nav-container">
+            <button
+                class="menu-toggle"
+                id="menuToggle"
+                type="button"
+                aria-label="Open navigation menu"
+                aria-expanded="false"
+                aria-controls="navLinks">
+                ☰
+            </button>
 
-        <a href="#home" class="logo">
-            SRK.
-        </a>
-
-        <ul class="nav-links">
-
-            <li>
-                <a href="#home">Home</a>
-            </li>
-
-            <li>
-                <a href="#about">About</a>
-            </li>
-
-            <li>
-                <a href="#skills">Skills</a>
-            </li>
-
-            <li>
-                <a href="#projects">Projects</a>
-            </li>
-
-            <li>
-                <a href="#experience">Experience</a>
-            </li>
-
-            <li>
-                <a href="#contact">Contact</a>
-            </li>
-
-        </ul>
-
-    </div>
-
-</nav>
-
-
-
-<!-- =====================================================
-     HERO
-====================================================== -->
-
-<section class="hero" id="home">
-
-    <div class="container hero-container">
-
-        <div>
-
-            <div class="hero-small">
-                MECHANICAL ENGINEERING STUDENT
-            </div>
-
-            <h1>
-                Hi, I'm
-                <span>Siva Rama Krishna.</span>
-            </h1>
-
-            <p class="hero-description">
-
-                Mechanical Engineering undergraduate passionate about
-                engineering design, CAD, manufacturing, Solid Mechanics,
-                and developing practical engineering solutions.
-
-            </p>
-
-
-            <div class="hero-buttons">
-
-                <a href="#projects" class="btn btn-primary">
-                    View My Projects
-                </a>
-
-                <a href="#contact" class="btn btn-outline">
-                    Contact Me
-                </a>
-
-            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#certifications">Certifications</a></li>
+                <li><a href="#achievements">Achievements</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
 
         </div>
+    </nav>
 
+    <main>
 
-        <div class="hero-photo">
+        <!-- HERO -->
 
-            <div class="photo-wrapper">
+        <section class="hero" id="home">
+            <div class="container hero-container">
 
-                <img
-                    src="./1000390124.jpg"
-                    alt="Nagubilli Siva Rama Krishna"
-                >
+                <div class="hero-content">
 
-            </div>
+                    <div class="hero-small">
+                        MECHANICAL ENGINEERING STUDENT
+                    </div>
 
-        </div>
+                    <h1>
+                        Hi, I'm
+                        <span>Siva Rama Krishna.</span>
+                    </h1>
 
-    </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     ABOUT
-====================================================== -->
-
-<section id="about">
-
-    <div class="container">
-
-        <div class="section-heading">
-
-            <div class="section-label">
-                About Me
-            </div>
-
-            <h2>
-                Engineering with curiosity.
-            </h2>
-
-            <p>
-                A little about who I am and what I am working towards.
-            </p>
-
-        </div>
-
-
-        <div class="about-grid">
-
-            <div class="about-text">
-
-                <p>
-
-                    I am a Mechanical Engineering undergraduate at
-                    Lendi Institute of Engineering and Technology with
-                    a strong academic interest in Solid Mechanics,
-                    engineering design, and data-driven analysis.
-
-                </p>
-
-                <p>
-
-                    I enjoy working on practical engineering projects
-                    where mechanical concepts can be converted into
-                    useful real-world solutions.
-
-                </p>
-
-                <p>
-
-                    My experience includes CAD design, industrial
-                    training, project development, and working as a
-                    team leader on engineering projects.
-
-                </p>
-
-            </div>
-
-
-            <div class="about-info">
-
-                <div class="info-card">
-
-                    <h3>
-                        Degree
-                    </h3>
-
-                    <p>
-                        B.Tech Mechanical Engineering
+                    <p class="hero-description">
+                        Mechanical Engineering undergraduate passionate
+                        about engineering design, CAD, manufacturing,
+                        Solid Mechanics, and developing practical
+                        engineering solutions.
                     </p>
 
+                    <div class="hero-buttons">
+                        <a href="#projects" class="btn btn-primary">
+                            View My Projects ↗
+                        </a>
+
+                        <a href="#contact" class="btn btn-outline">
+                            Contact Me
+                        </a>
+                    </div>
+
                 </div>
 
+                <div class="hero-photo">
+                    <div class="photo-wrapper">
+                        <img
+                            src="./1000390124.jpg"
+                            alt="Portrait of Siva Rama Krishna">
+                    </div>
+                </div>
 
-                <div class="info-card">
+            </div>
+        </section>
 
-                    <h3>
-                        CGPA
-                    </h3>
+        <!-- ABOUT -->
 
+        <section id="about">
+            <div class="container">
+
+                <div class="section-heading">
+                    <div class="section-label">About Me</div>
+                    <h2>Engineering with curiosity.</h2>
                     <p>
-                        8.74 / 10
+                        A little about who I am and what I am working towards.
                     </p>
-
                 </div>
 
+                <div class="about-grid">
 
-                <div class="info-card">
+                    <div class="about-text">
+                        <p>
+                            I am a Mechanical Engineering undergraduate at
+                            Lendi Institute of Engineering and Technology,
+                            with an academic interest in Solid Mechanics,
+                            engineering design, and data-driven analysis.
+                        </p>
 
-                    <h3>
-                        Location
-                    </h3>
+                        <p>
+                            I enjoy working on practical engineering projects
+                            where mechanical concepts can be converted into
+                            useful real-world solutions.
+                        </p>
 
+                        <p>
+                            My experience includes CAD design, industrial
+                            training, project development, and working as
+                            a team leader on engineering projects.
+                        </p>
+                    </div>
+
+                    <div class="about-info">
+
+                        <div class="info-card">
+                            <h3>Degree</h3>
+                            <p>B.Tech Mechanical Engineering</p>
+                        </div>
+
+                        <div class="info-card">
+                            <h3>CGPA</h3>
+                            <p>8.74 / 10</p>
+                        </div>
+
+                        <div class="info-card">
+                            <h3>Location</h3>
+                            <p>Andhra Pradesh, India</p>
+                        </div>
+
+                        <div class="info-card">
+                            <h3>Focus</h3>
+                            <p>Mechanical Engineering</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SKILLS -->
+
+        <section id="skills" class="section-alt">
+            <div class="container">
+
+                <div class="section-heading">
+                    <div class="section-label">Skills</div>
+                    <h2>Technical Toolkit</h2>
                     <p>
-                        Andhra Pradesh, India
+                        Engineering tools and technologies I work with.
                     </p>
-
                 </div>
 
+                <div class="skills-grid">
 
-                <div class="info-card">
+                    <div class="skill-card">
+                        <div class="skill-icon">⚙️</div>
+                        <h3>AutoCAD</h3>
+                        <p>2D Engineering Design</p>
+                    </div>
 
-                    <h3>
-                        Focus
-                    </h3>
+                    <div class="skill-card">
+                        <div class="skill-icon">📐</div>
+                        <h3>CATIA</h3>
+                        <p>3D CAD & Product Design</p>
+                    </div>
 
+                    <div class="skill-card">
+                        <div class="skill-icon">🛠️</div>
+                        <h3>NX CAD</h3>
+                        <p>Mechanical Design</p>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-icon">🐍</div>
+                        <h3>Python</h3>
+                        <p>Programming & Data Analysis</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- PROJECTS -->
+
+        <section id="projects">
+            <div class="container">
+
+                <div class="section-heading">
+                    <div class="section-label">Projects</div>
+                    <h2>Things I've Built</h2>
                     <p>
-                        Mechanical Engineering
+                        Engineering projects where I applied concepts
+                        to practical problems.
                     </p>
-
                 </div>
 
+                <div class="projects-grid">
+
+                    <article class="project-card">
+                        <div class="project-number">PROJECT 01</div>
+                        <h3>Semi-Automatic Pesticide Sprayer</h3>
+                        <div class="role">Co-Team Leader</div>
+                        <p>
+                            Designed a mechanism intended to reduce direct
+                            human exposure to harmful pesticides. Worked on
+                            system design, fabrication, testing, and
+                            performance evaluation.
+                        </p>
+                    </article>
+
+                    <article class="project-card">
+                        <div class="project-number">PROJECT 02</div>
+                        <h3>Motorized Hydraulic Jack</h3>
+                        <div class="role">Team Leader</div>
+                        <p>
+                            Led the design and development of a motorized
+                            hydraulic jack intended to improve lifting safety
+                            and reduce manual effort.
+                        </p>
+                    </article>
+
+                    <article class="project-card">
+                        <div class="project-number">PROJECT 03</div>
+                        <h3>Car Rear-Axle Power Generation</h3>
+                        <div class="role">Team Member</div>
+                        <p>
+                            Developed a concept for recovering mechanical
+                            energy from a vehicle rear axle to charge a
+                            battery for auxiliary electrical loads.
+                        </p>
+                    </article>
+
+                </div>
             </div>
+        </section>
 
-        </div>
+        <!-- EXPERIENCE -->
 
-    </div>
+        <section id="experience" class="section-alt">
+            <div class="container">
 
-</section>
+                <div class="section-heading">
+                    <div class="section-label">Experience</div>
+                    <h2>Industrial Exposure</h2>
+                    <p>
+                        My internship and industrial training experience.
+                    </p>
+                </div>
 
+                <div class="timeline">
 
+                    <article class="timeline-item">
+                        <div class="timeline-dot"></div>
 
-<!-- =====================================================
-     SKILLS
-====================================================== -->
+                        <h3>Isuzu Motors India Pvt. Ltd.</h3>
 
-<section id="skills">
+                        <div class="date">6 Months · Trainee</div>
 
-    <div class="container">
+                        <p>
+                            Assisted in production activities and observed
+                            assembly processes. Developed an understanding
+                            of vehicle systems, quality control, and
+                            industrial workflows.
+                        </p>
+                    </article>
 
-        <div class="section-heading">
+                    <article class="timeline-item">
+                        <div class="timeline-dot"></div>
 
-            <div class="section-label">
-                Skills
+                        <h3>RINL – Visakhapatnam Steel Plant</h3>
+
+                        <div class="date">
+                            4 Weeks · Summer Internship · MMSM Department
+                        </div>
+
+                        <p>
+                            Studied hydraulic systems used in furnace
+                            operations. Observed working principles,
+                            maintenance practices, and safety procedures
+                            of industrial hydraulic equipment.
+                        </p>
+                    </article>
+
+                </div>
             </div>
+        </section>
 
-            <h2>
-                Technical Toolkit
-            </h2>
+        <!-- EDUCATION -->
+
+        <section id="education">
+            <div class="container">
+
+                <div class="section-heading">
+                    <div class="section-label">Education</div>
+                    <h2>Academic Journey</h2>
+                </div>
+
+                <div class="education-grid">
+
+                    <article class="education-card">
+                        <h3>2024 – 2027</h3>
+                        <h4>B.Tech – Mechanical Engineering</h4>
+                        <p>Lendi Institute of Engineering and Technology</p>
+                        <p>CGPA: 8.74 / 10</p>
+                    </article>
+
+                    <article class="education-card">
+                        <h3>2021 – 2024</h3>
+                        <h4>Diploma</h4>
+                        <p>Sai Ganapathi Polytechnic College</p>
+                        <p>Percentage: 86%</p>
+                    </article>
+
+                    <article class="education-card">
+                        <h3>2021</h3>
+                        <h4>SSC</h4>
+                        <p>A. P. Model School</p>
+                        <p>Percentage: 92%</p>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- CERTIFICATIONS -->
+
+        <section id="certifications" class="section-alt">
+            <div class="container">
+
+                <div class="section-heading">
+                    <div class="section-label">Certifications</div>
+                    <h2>Learning & Certifications</h2>
+                </div>
+
+                <div class="certifications">
+
+                    <article class="certificate">
+                        <div class="certificate-icon">✦</div>
+                        <div>
+                            <h3>NPTEL – Internet of Things</h3>
+                            <p>Issuing Organization: NPTEL</p>
+                        </div>
+                    </article>
+
+                    <article class="certificate">
+                        <div class="certificate-icon">✦</div>
+                        <div>
+                            <h3>NPTEL – R Software</h3>
+                            <p>Issuing Organization: NPTEL</p>
+                        </div>
+                    </article>
+
+                    <article class="certificate">
+                        <div class="certificate-icon">⚙</div>
+                        <div>
+                            <h3>Industrial Automation Virtual Internship</h3>
+                            <p>Issuing Organization: AICTE</p>
+                        </div>
+                    </article>
+
+                    <article class="certificate">
+                        <div class="certificate-icon">⌘</div>
+                        <div>
+                            <h3>Structural ANSYS Virtual Internship</h3>
+                            <p>Issuing Organization: AICTE</p>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ACHIEVEMENTS -->
+
+        <section id="achievements">
+            <div class="container">
+
+                <div class="section-heading">
+                    <div class="section-label">Achievements</div>
+                    <h2>Highlights</h2>
+                </div>
+
+                <div class="achievements-list">
+
+                    <article class="achievement-card">
+                        <div class="achievement-icon">🏆</div>
+                        <div>
+                            <h3>Tube-in-Tube Helical Coil Heat Exchanger</h3>
+                            <p>
+                                Government-certified patent focused on
+                                improving heat transfer efficiency and
+                                compact thermal system design.
+                            </p>
+                        </div>
+                    </article>
+
+                    <article class="achievement-card">
+                        <div class="achievement-icon">🥈</div>
+                        <div>
+                            <h3>Second Place – Start-up Ideathon</h3>
+                            <p>
+                                Secured second place in the Start-up Ideathon
+                                at the Lendi National Innovation and
+                                Technology Summit (LNIT 2K26).
+                            </p>
+                        </div>
+                    </article>
+
+                    <article class="achievement-card">
+                        <div class="achievement-icon">📄</div>
+                        <div>
+                            <h3>Student Research & Industrial Conclave</h3>
+                            <p>
+                                Participated in the SRIC technical paper
+                                presentation organized by the Department
+                                of Mechanical Engineering, Vignan Institute
+                                of Information Technology.
+                            </p>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+
+        <section id="contact" class="contact-section section-alt">
+            <div class="container">
+
+                <div class="section-heading">
+                    <div class="section-label">Contact</div>
+                    <h2>Let's Connect</h2>
+                </div>
+
+                <p>
+                    I am interested in mechanical engineering opportunities,
+                    internships, engineering projects, and learning
+                    experiences. Feel free to connect with me.
+                </p>
+
+                <div class="contact-links">
+
+                    <a
+                        href="mailto:sramakrishna759@gmail.com"
+                        class="btn btn-primary">
+                        Email Me ↗
+                    </a>
+
+                    <a
+                        href="https://www.linkedin.com/in/siva-rama-krishna-nagubilli-29a7a22a3"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="btn btn-outline">
+                        LinkedIn ↗
+                    </a>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+
+    <footer>
+        <div class="container footer-content">
+            <a href="#home" class="footer-logo">SRK.</a>
 
             <p>
-                Technologies and engineering tools I currently work with.
+                © 2026 Nagubilli Siva Rama Krishna.
+                Built with HTML & CSS.
             </p>
-
         </div>
-
-
-        <div class="skills-grid">
-
-
-            <div class="skill-card">
-
-                <div class="skill-icon">
-                    ⚙️
-                </div>
-
-                <h3>
-                    AutoCAD
-                </h3>
-
-                <p>
-                    2D Engineering Design
-                </p>
-
-            </div>
-
-
-            <div class="skill-card">
-
-                <div class="skill-icon">
-                    📐
-                </div>
-
-                <h3>
-                    CATIA
-                </h3>
-
-                <p>
-                    3D CAD & Product Design
-                </p>
-
-            </div>
-
-
-            <div class="skill-card">
-
-                <div class="skill-icon">
-                    🛠️
-                </div>
-
-                <h3>
-                    NX CAD
-                </h3>
-
-                <p>
-                    Mechanical Design
-                </p>
-
-            </div>
-
-
-            <div class="skill-card">
-
-                <div class="skill-icon">
-                    🐍
-                </div>
-
-                <h3>
-                    Python
-                </h3>
-
-                <p>
-                    Programming & Data Analysis
-                </p>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     PROJECTS
-====================================================== -->
-
-<section id="projects">
-
-    <div class="container">
-
-        <div class="section-heading">
-
-            <div class="section-label">
-                Projects
-            </div>
-
-            <h2>
-                Things I've Built
-            </h2>
-
-            <p>
-                Engineering projects where I applied concepts to practical problems.
-            </p>
-
-        </div>
-
-
-        <div class="projects-grid">
-
-
-            <!-- PROJECT 1 -->
-
-            <div class="project-card">
-
-                <div class="project-number">
-                    PROJECT 01
-                </div>
-
-                <h3>
-                    Semi-Automatic Pesticide Sprayer
-                </h3>
-
-                <div class="role">
-                    Co-Team Leader
-                </div>
-
-                <p>
-
-                    Designed a mechanism to reduce direct human exposure
-                    to harmful pesticides. Worked on system design,
-                    fabrication, testing, and performance evaluation.
-
-                </p>
-
-            </div>
-
-
-            <!-- PROJECT 2 -->
-
-            <div class="project-card">
-
-                <div class="project-number">
-                    PROJECT 02
-                </div>
-
-                <h3>
-                    Motorized Hydraulic Jack
-                </h3>
-
-                <div class="role">
-                    Team Leader
-                </div>
-
-                <p>
-
-                    Led the design and development of a motorized hydraulic
-                    jack intended to improve lifting safety and reduce
-                    manual effort.
-
-                </p>
-
-            </div>
-
-
-            <!-- PROJECT 3 -->
-
-            <div class="project-card">
-
-                <div class="project-number">
-                    PROJECT 03
-                </div>
-
-                <h3>
-                    Car Rear-Axle Power Generation
-                </h3>
-
-                <div class="role">
-                    Team Member
-                </div>
-
-                <p>
-
-                    Developed a concept for recovering mechanical energy
-                    from a vehicle rear axle to charge a battery for
-                    auxiliary electrical loads.
-
-                </p>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     EXPERIENCE
-====================================================== -->
-
-<section id="experience">
-
-    <div class="container">
-
-        <div class="section-heading">
-
-            <div class="section-label">
-                Experience
-            </div>
-
-            <h2>
-                Industrial Exposure
-            </h2>
-
-            <p>
-                My internship and industrial training experience.
-            </p>
-
-        </div>
-
-
-        <div class="timeline">
-
-
-            <!-- ISUZU -->
-
-            <div class="timeline-item">
-
-                <div class="timeline-dot"></div>
-
-                <h3>
-                    Isuzu Motors India Pvt Ltd
-                </h3>
-
-                <div class="date">
-                    6 Months · Trainee
-                </div>
-
-                <p>
-
-                    Assisted in production activities and observed
-                    assembly processes. Developed an understanding of
-                    vehicle systems, quality control, and industrial
-                    workflows.
-
-                </p>
-
-            </div>
-
-
-            <!-- RINL -->
-
-            <div class="timeline-item">
-
-                <div class="timeline-dot"></div>
-
-                <h3>
-                    RINL – Visakhapatnam Steel Plant
-                </h3>
-
-                <div class="date">
-                    4 Weeks · Summer Internship · MMSM Department
-                </div>
-
-                <p>
-
-                    Studied hydraulic systems used in furnace operations.
-                    Observed working principles, maintenance practices,
-                    and safety procedures of industrial hydraulic equipment.
-
-                </p>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     EDUCATION
-====================================================== -->
-
-<section id="education">
-
-    <div class="container">
-
-        <div class="section-heading">
-
-            <div class="section-label">
-                Education
-            </div>
-
-            <h2>
-                Academic Journey
-            </h2>
-
-        </div>
-
-
-        <div class="education-grid">
-
-
-            <div class="education-card">
-
-                <h3>
-                    2024 – 2027
-                </h3>
-
-                <h4>
-                    B.Tech – Mechanical Engineering
-                </h4>
-
-                <p>
-                    Lendi Institute of Engineering and Technology
-                </p>
-
-                <p>
-                    CGPA: 8.74
-                </p>
-
-            </div>
-
-
-            <div class="education-card">
-
-                <h3>
-                    2021 – 2024
-                </h3>
-
-                <h4>
-                    Diploma
-                </h4>
-
-                <p>
-                    Sai Ganapathi Polytechnic College
-                </p>
-
-                <p>
-                    Percentage: 86%
-                </p>
-
-            </div>
-
-
-            <div class="education-card">
-
-                <h3>
-                    2021
-                </h3>
-
-                <h4>
-                    SSC
-                </h4>
-
-                <p>
-                    A. P. Model School
-                </p>
-
-                <p>
-                    Percentage: 92%
-                </p>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     CERTIFICATIONS
-====================================================== -->
-
-<section id="certifications">
-
-    <div class="container">
-
-        <div class="section-heading">
-
-            <div class="section-label">
-                Certifications
-            </div>
-
-            <h2>
-                Learning & Certifications
-            </h2>
-
-        </div>
-
-
-        <div class="certifications">
-
-
-            <div class="certificate">
-
-                <h3>
-                    NPTEL – Internet of Things
-                </h3>
-
-                <p>
-                    Issuing Organization: NPTEL
-                </p>
-
-            </div>
-
-
-            <div class="certificate">
-
-                <h3>
-                    NPTEL – R Software
-                </h3>
-
-                <p>
-                    Issuing Organization: NPTEL
-                </p>
-
-            </div>
-
-
-            <div class="certificate">
-
-                <h3>
-                    Industrial Automation Virtual Internship
-                </h3>
-
-                <p>
-                    Issuing Organization: AICTE
-                </p>
-
-            </div>
-
-
-            <div class="certificate">
-
-                <h3>
-                    Structural ANSYS Virtual Internship
-                </h3>
-
-                <p>
-                    Issuing Organization: AICTE
-                </p>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     ACHIEVEMENTS
-====================================================== -->
-
-<section id="achievements">
-
-    <div class="container">
-
-        <div class="section-heading">
-
-            <div class="section-label">
-                Achievements
-            </div>
-
-            <h2>
-                Highlights
-            </h2>
-
-        </div>
-
-
-        <div class="achievement-card">
-
-            <h3>
-                Tube-in-Tube Helical Coil Heat Exchanger
-            </h3>
-
-            <p>
-
-                Government-certified patent focused on improving heat
-                transfer efficiency and compact thermal system design.
-
-            </p>
-
-        </div>
-
-
-        <div class="achievement-card">
-
-            <h3>
-                Second Place – Start-up Ideathon
-            </h3>
-
-            <p>
-
-                Secured Second Place in the Start-up Ideathon at the
-                Lendi National Innovation and Technology Summit
-                (LNIT 2K26).
-
-            </p>
-
-        </div>
-
-
-        <div class="achievement-card">
-
-            <h3>
-                Student Research & Industrial Conclave
-            </h3>
-
-            <p>
-
-                Participated in the SRIC technical paper presentation
-                organized by the Department of Mechanical Engineering,
-                Vignan Institute of Information Technology.
-
-            </p>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     CONTACT
-====================================================== -->
-
-<section id="contact">
-
-    <div class="container contact-section">
-
-        <div class="section-heading">
-
-            <div class="section-label">
-                Contact
-            </div>
-
-            <h2>
-                Let's Connect
-            </h2>
-
-        </div>
-
-
-        <p>
-
-            I am interested in mechanical engineering opportunities,
-            internships, engineering projects, and learning experiences.
-            Feel free to connect with me.
-
-        </p>
-
-
-        <div class="contact-links">
-
-            <a
-                href="mailto:sramakrishna759@gmail.com"
-                class="btn btn-primary">
-
-                Email Me
-
-            </a>
-
-
-            <a
-                href="https://www.linkedin.com/in/siva-rama-krishna-nagubilli-29a7a22a3"
-                target="_blank"
-                class="btn btn-outline">
-
-                LinkedIn
-
-            </a>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     FOOTER
-====================================================== -->
-
-<footer>
-
-    <div class="container">
-
-        © 2026 Nagubilli Siva Rama Krishna.
-        Built with HTML & CSS.
-
-    </div>
-
-</footer>
-
+    </footer>
+
+    <!-- MOBILE NAVIGATION SCRIPT -->
+
+    <script>
+        const menuToggle = document.getElementById("menuToggle");
+        const navLinks = document.getElementById("navLinks");
+        const navItems = navLinks.querySelectorAll("a");
+
+        function closeMenu() {
+            navLinks.classList.remove("open");
+            menuToggle.setAttribute("aria-expanded", "false");
+            menuToggle.setAttribute("aria-label", "Open navigation menu");
+            menuToggle.textContent = "☰";
+            document.body.classList.remove("menu-open");
+        }
+
+        menuToggle.addEventListener("click", function () {
+            const isOpen = navLinks.classList.toggle("open");
+
+            menuToggle.setAttribute("aria-expanded", String(isOpen));
+            menuToggle.setAttribute(
+                "aria-label",
+                isOpen ? "Close navigation menu" : "Open navigation menu"
+            );
+
+            menuToggle.textContent = isOpen ? "×" : "☰";
+            document.body.classList.toggle("menu-open", isOpen);
+        });
+
+        navItems.forEach(function (link) {
+            link.addEventListener("click", closeMenu);
+        });
+
+        document.addEventListener("keydown", function (event) {
+            if (event.key === "Escape") {
+                closeMenu();
+            }
+        });
+
+        window.addEventListener("resize", function () {
+            if (window.innerWidth > 950) {
+                closeMenu();
+            }
+        });
+    </script>
 
 </body>
-
 </html>
